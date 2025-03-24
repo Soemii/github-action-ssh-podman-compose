@@ -1,5 +1,5 @@
-name: SSH-Compose
-description: SSH into host and deploy repository with Docker-Compose
+name: SSH-podman-Compose
+description: SSH into host and deploy repository with podman-compose
 inputs:
   ssh_private_key:
     description: Private SSH key used for logging into remote system.
@@ -20,12 +20,6 @@ inputs:
   docker_compose_filename:
     description: Docker compose file to use
     default: docker-compose.yaml
-  use_stack:
-    description: Use docker stack instead of docker compose ("true" or "false").
-    default: 'false'
-  use_podman:
-    description: Use podman instead of docker ("true" or "false").
-    default: 'false'
 runs:
   using: docker
   image: Dockerfile
@@ -36,5 +30,3 @@ runs:
     SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
     DOCKER_COMPOSE_FILENAME: ${{ inputs.docker_compose_filename }}
     DOCKER_COMPOSE_PREFIX: ${{ inputs.docker_compose_prefix }}
-    USE_DOCKER_STACK: ${{ inputs.use_stack }}
-    USE_PODMAN: ${{ inputs.use_podman }}
